@@ -6,12 +6,11 @@ from aiogram import types
 from aiogram.dispatcher.filters import Command
 from aiogram.dispatcher.storage import FSMContext
 
-
 from loguru import logger
 
 from loader import dp, mira
 
-from states import City
+from states import DateWeather
 from configurations.config import OPEN_WEATHER
 
 
@@ -24,17 +23,19 @@ atmosphere = types.InputFile(path_or_bytesio="photos/weather/Atmosphere.gif")
 
 
 @dp.message_handler(Command("weather"))
-async def get_weather(message: types.Message):
+async def post_city_from_bot(message: types.Message):
     await message.answer("Введите название города на латинице например: Moscow")
-    await City.City.set()
+    await DateWeather.City.set()
 
 
-@dp.message_handler(state=City.City)
-async def ansewr_cyti(message: types.Message, state: FSMContext):
+@dp.message_handler(state=DateWeather.City)
+async def send_weather(message: types.Message, state: FSMContext):
     city = message.text
     await state.update_data(city=city)
     try:
-        request = httpx.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={OPEN_WEATHER}&units=metric")
+        request = httpx.get(
+            f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={OPEN_WEATHER}&units=metric"
+            )
         data = request.json()
 
         city = data["name"]
@@ -52,11 +53,11 @@ async def ansewr_cyti(message: types.Message, state: FSMContext):
                 chat_id=message.chat.id,
                 animation=clouds,
                 caption=(
-                f"<b>***{datetime.datetime.now().strftime('%H:%M %d-%m-%Y')}***\n</b>"
-                f"<b>Погода в городе: {city}\nТемпература:{temp_weather}С°\n</b>"
-                f"<b>Влажность: {humidity}\nДавление:{pressure}мм.рт.ст\nВетер: {wind} м/с\n</b>"
-                f"<b>Восход солнца: {sunrise_times}\nЗаход солнца:{sunset_times}\n</b>"
-                f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
+                 f"<b>***{datetime.datetime.now().strftime('%H:%M %d-%m-%Y')}***\n</b>"
+                 f"<b>Погода в городе: {city}\nТемпература:{temp_weather}С°\n</b>"
+                 f"<b>Влажность: {humidity}\nДавление:{pressure}мм.рт.ст\nВетер: {wind} м/с\n</b>"
+                 f"<b>Восход солнца: {sunrise_times}\nЗаход солнца:{sunset_times}\n</b>"
+                 f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
                 )
             await state.reset_state()
 
@@ -65,11 +66,11 @@ async def ansewr_cyti(message: types.Message, state: FSMContext):
                 chat_id=message.chat.id,
                 animation=rain,
                 caption=(
-                f"<b>***{datetime.datetime.now().strftime('%H:%M %d-%m-%Y')}***\n</b>"
-                f"<b>Погода в городе: {city}\nТемпература:{temp_weather}С°\n</b>"
-                f"<b>Влажность: {humidity}\nДавление:{pressure}мм.рт.ст\nВетер: {wind} м/с\n</b>"
-                f"<b>Восход солнца: {sunrise_times}\nЗаход солнца:{sunset_times}\n</b>"
-                f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
+                 f"<b>***{datetime.datetime.now().strftime('%H:%M %d-%m-%Y')}***\n</b>"
+                 f"<b>Погода в городе: {city}\nТемпература:{temp_weather}С°\n</b>"
+                 f"<b>Влажность: {humidity}\nДавление:{pressure}мм.рт.ст\nВетер: {wind} м/с\n</b>"
+                 f"<b>Восход солнца: {sunrise_times}\nЗаход солнца:{sunset_times}\n</b>"
+                 f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
                 )
             await state.reset_state()
 
@@ -77,12 +78,12 @@ async def ansewr_cyti(message: types.Message, state: FSMContext):
             await message.answer_animation(
                 chat_id=message.chat.id,
                 animation=thunderstorm,
-               caption=(
-                f"<b>***{datetime.datetime.now().strftime('%H:%M %d-%m-%Y')}***\n</b>"
-                f"<b>Погода в городе: {city}\nТемпература:{temp_weather}С°\n</b>"
-                f"<b>Влажность: {humidity}\nДавление:{pressure}мм.рт.ст\nВетер: {wind} м/с\n</b>"
-                "<b>Восход солнца: {sunrise_times}\nЗаход солнца:{sunset_times}\n</b>"
-                f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
+                caption=(
+                 f"<b>***{datetime.datetime.now().strftime('%H:%M %d-%m-%Y')}***\n</b>"
+                 f"<b>Погода в городе: {city}\nТемпература:{temp_weather}С°\n</b>"
+                 f"<b>Влажность: {humidity}\nДавление:{pressure}мм.рт.ст\nВетер: {wind} м/с\n</b>"
+                 f"<b>Восход солнца: {sunrise_times}\nЗаход солнца:{sunset_times}\n</b>"
+                 f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
                 )
             await state.reset_state()
 
@@ -91,11 +92,11 @@ async def ansewr_cyti(message: types.Message, state: FSMContext):
                 chat_id=message.chat.id,
                 animation=snow,
                 caption=(
-                f"<b>***{datetime.datetime.now().strftime('%H:%M %d-%m-%Y')}***\n</b>"
-                f"<b>Погода в городе: {city}\nТемпература:{temp_weather}С°\n</b>"
-                f"<b>Влажность: {humidity}\nДавление:{pressure}мм.рт.ст\nВетер: {wind} м/с\n</b>"
-                f"<b>Восход солнца: {sunrise_times}\nЗаход солнца:{sunset_times}\n</b>"
-                f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
+                 f"<b>***{datetime.datetime.now().strftime('%H:%M %d-%m-%Y')}***\n</b>"
+                 f"<b>Погода в городе: {city}\nТемпература:{temp_weather}С°\n</b>"
+                 f"<b>Влажность: {humidity}\nДавление:{pressure}мм.рт.ст\nВетер: {wind} м/с\n</b>"
+                 f"<b>Восход солнца: {sunrise_times}\nЗаход солнца:{sunset_times}\n</b>"
+                 f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
                 )
             await state.reset_state()
 
@@ -104,24 +105,35 @@ async def ansewr_cyti(message: types.Message, state: FSMContext):
                 chat_id=message.chat.id,
                 animation=clear,
                 caption=(
-                f"<b>***{datetime.datetime.now().strftime('%H:%M %d-%m-%Y')}***\n</b>"
-                f"<b>Погода в городе: {city}\nТемпература:{temp_weather}С°\n</b>"
-                f"<b>Влажность: {humidity}\nДавление:{pressure}мм.рт.ст\nВетер: {wind} м/с\n</b>"
-                f"<b>Восход солнца: {sunrise_times}\nЗаход солнца:{sunset_times}\n</b>"
-                f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
+                 f"<b>***{datetime.datetime.now().strftime('%H:%M %d-%m-%Y')}***\n</b>"
+                 f"<b>Погода в городе: {city}\nТемпература:{temp_weather}С°\n</b>"
+                 f"<b>Влажность: {humidity}\nДавление:{pressure}мм.рт.ст\nВетер: {wind} м/с\n</b>"
+                 f"<b>Восход солнца: {sunrise_times}\nЗаход солнца:{sunset_times}\n</b>"
+                 f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
                 )
             await state.reset_state()
 
-        elif weather_description in ["Mist", "Smoke", "Haze", "Dust", "Fog", "Sand", "Dust", "Ash", "Squall", "Tornado"]:
+        elif weather_description in [
+                                     "Mist",
+                                     "Smoke",
+                                     "Haze",
+                                     "Dust",
+                                     "Fog",
+                                     "Sand",
+                                     "Dust",
+                                     "Ash",
+                                     "Squall",
+                                     "Tornado"
+                                     ]:
             await mira.send_animation(
                 chat_id=message.chat.id,
                 animation=atmosphere,
                 caption=(
-            f"<b>***{datetime.datetime.now().strftime('%H:%M %d-%m-%Y')}***\n</b>"
-            f"<b>Погода в городе: {city}\nТемпература:{temp_weather}С°\n</b>"
-            f"<b>Влажность: {humidity}\nДавление:{pressure}мм.рт.ст\nВетер: {wind} м/с\n</b>"
-            f"<b>Восход солнца: {sunrise_times}\nЗаход солнца:{sunset_times}\n</b>"
-            f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
+                         f"<b>***{datetime.datetime.now().strftime('%H:%M %d-%m-%Y')}***\n</b>"
+                         f"<b>Погода в городе: {city}\nТемпература:{temp_weather}С°\n</b>"
+                         f"<b>Влажность: {humidity}\nДавление:{pressure}мм.рт.ст\nВетер: {wind} м/с\n</b>"
+                         f"<b>Восход солнца: {sunrise_times}\nЗаход солнца:{sunset_times}\n</b>"
+                         f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
                 )
             await state.reset_state()
 

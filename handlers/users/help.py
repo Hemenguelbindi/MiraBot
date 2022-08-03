@@ -3,7 +3,6 @@ from aiogram.dispatcher.filters.builtin import CommandHelp
 from loader import dp, mira
 
 
-
 @dp.message_handler(CommandHelp())
 async def send_help(message: types.Message):
     await mira.send_animation(

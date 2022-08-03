@@ -59,7 +59,7 @@ async def ansewr_cyti(message: types.Message, state: FSMContext):
                 f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
                 )
             await state.reset_state()
-            
+
         elif weather_description == "Rain":
             await message.answer_animation(
                 chat_id=message.chat.id,
@@ -72,7 +72,7 @@ async def ansewr_cyti(message: types.Message, state: FSMContext):
                 f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
                 )
             await state.reset_state()
-        
+
         elif weather_description == "Thunderstorm":
             await message.answer_animation(
                 chat_id=message.chat.id,
@@ -85,7 +85,7 @@ async def ansewr_cyti(message: types.Message, state: FSMContext):
                 f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
                 )
             await state.reset_state()
-        
+
         elif weather_description == "Snow":
             await mira.send_animation(
                 chat_id=message.chat.id,
@@ -98,7 +98,7 @@ async def ansewr_cyti(message: types.Message, state: FSMContext):
                 f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
                 )
             await state.reset_state()
-        
+
         elif weather_description == "Clear":
             await message.answer_animation(
                 chat_id=message.chat.id,
@@ -111,7 +111,7 @@ async def ansewr_cyti(message: types.Message, state: FSMContext):
                 f"<b>Продолжительность светового дня {length_of_the_day}\n Хорошего дня!</b>")
                 )
             await state.reset_state()
-            
+
         elif weather_description in ["Mist", "Smoke", "Haze", "Dust", "Fog", "Sand", "Dust", "Ash", "Squall", "Tornado"]:
             await mira.send_animation(
                 chat_id=message.chat.id,
@@ -129,6 +129,7 @@ async def ansewr_cyti(message: types.Message, state: FSMContext):
         logger.error(ex)
         logger.info("Проверьте название города")
         await mira.send_message(
+            chat_id=message.chat.id,
             text=("<b>Вы не правильно ввели название города. </b>"
                   "<b>Повторите команду /weather, для получения погоды</b>"
                   ))

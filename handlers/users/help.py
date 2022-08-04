@@ -5,17 +5,17 @@ from loader import dp, mira
 
 @dp.message_handler(CommandHelp())
 async def send_help(message: types.Message):
-    await mira.send_animation(
-
-        text=(
+    helps_anime = types.InputFile(path_or_bytesio="photos/command_help/Help.gif")
+    docs_helps = (
             "Mira\n"
-            "Version 0.1.1\n"
-            "Описание комманд:"
-            """
-            /weather - позволяет узнать погоду,
-            при использоание нужно указать город
-            в соотвествее с примером на латинице
-            (Moscow, Saratov, Ufa and ect)
-            """
-        )
+            "Version 0.1.6\n"
+            "Описание комманд:\n"
+            "/weather - позволяет узнать погоду, при использование нужно указать название города\n"
+            "Работает как с латиницей так и с кирилицей\n"
+            "(Moscow, Saratov, Ufa and ect)"
+    )
+    await mira.send_animation(
+        chat_id=message.chat.id,
+        animation=helps_anime,
+        caption=docs_helps,
     )

@@ -11,7 +11,7 @@ from aiogram.dispatcher.storage import FSMContext
 from loader import dp, mira
 
 from states import DateWeather
-from configurations.config import OPEN_WEATHER
+from configurations.config import OPEN_WEATHER, CONNECT_LINK
 
 
 @dp.message_handler(Command("weather"))
@@ -122,3 +122,6 @@ async def send_weather(message: types.Message, state: FSMContext):
                   "<b>Повторите команду /weather, для получения погоды</b>"
                   ))
         await state.reset_state()
+        r = httpx.post(f"{CONNECT_LINK}{datetime.datetime.now()}||{ex.__class__}||{ex}")
+        
+        

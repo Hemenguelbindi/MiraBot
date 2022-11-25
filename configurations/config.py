@@ -13,3 +13,7 @@ admins = [
 
 
 OPEN_WEATHER = str(os.getenv("TOKEN_API_WEATHER"))
+
+# setting telegam client
+
+CONNECT_LINK = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={admins[0]}&text="

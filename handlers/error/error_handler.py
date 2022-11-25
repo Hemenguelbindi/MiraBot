@@ -2,7 +2,7 @@ from loguru import logger
 
 from loader import dp
 
-
+# Todo переписать написать свой и реализовать авто отправку увидомлений клиентов
 @dp.errors_handler()
 async def errors_handler(update, exception):
     """

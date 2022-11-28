@@ -1,5 +1,5 @@
 import httpx
-from config_bot import BOT_TOKEN, CONNECT_LINK, admin_hemen
+from config_bot import BOT_TOKEN, CONNECT_LINK, admin_hemen, admin_kris
 
 
 class TelegramClient:
@@ -23,4 +23,6 @@ class TelegramClient:
 if __name__ == "__main__":
     telegram_client = TelegramClient(token=BOT_TOKEN, base_url=CONNECT_LINK)
     my_params = {'chat_id': admin_hemen, "text": "test message"}
+    print(telegram_client.post(method="sendMessage", params=my_params))
+    my_params = {'chat_id': admin_kris, "text": "test message"}
     print(telegram_client.post(method="sendMessage", params=my_params))

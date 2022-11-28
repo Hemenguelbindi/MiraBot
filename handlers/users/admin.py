@@ -9,7 +9,6 @@ async def send_command_start(message: types.Message):
     photo_from_bindi_admin = types.InputFile(path_or_bytesio="photos/admin_me.gif")
     photo_from_kris_admin = types.InputFile(path_or_bytesio="photos/admin_kris.gif")
     match message.chat.id or message.from_user.id:
-        
         case 222997056:
             await mira.send_animation(chat_id=message.chat.id,
                                   animation=photo_from_bindi_admin,

@@ -7,9 +7,7 @@ from aiogram.dispatcher.storage import FSMContext
 from loader import dp, mira
 
 from states import DateWeather
-
 from message_exept import create_error_message
-
 from config_bot import OPEN_WEATHER, CONNECT_LINK, admin_hemen
 
 from weather_app.weather import WeatherClient

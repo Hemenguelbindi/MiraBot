@@ -3,7 +3,7 @@ import httpx
 
 from loader import mira
 
-from  message_exept import create_error_message
+from message_exept import create_error_message
 from config_bot import admins
 from .config_weather import OPEN_WEATHER, API_WEATHER
 

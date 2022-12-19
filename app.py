@@ -3,19 +3,19 @@ from loguru import logger
 
 from aiogram import Bot, Dispatcher
 from keyboards.set_menu import set_main_menu
-from handlers.admin_handlers import register_admin_handler
-from config_data.config import Config, load_config
+from handlers import register_admin_handler, register_privat_user_handlers, register_user_handlers
+from config_data import Config, load_config
 
 
 logger.add("logs/{time}.log", format="{time} {level} {message}", rotation="1 week", compression="zip")
+
 config: Config = load_config()
-
-
-
 
 # Фнукция для регистрации всех хэндлеров
 def register_all_handlers(dp: Dispatcher) -> None:
     register_admin_handler(dp)
+    register_privat_user_handlers(dp)
+    register_user_handlers(dp)
 
 
 # Функция конфигурирования и запуска бота

@@ -1,7 +1,8 @@
 import datetime
 import httpx
 from loguru import logger
-from config_data import ConfigAPI, load_config_api
+from config_data import load_config_api, ConfigAPI
+
 
 
 config_weather: ConfigAPI = load_config_api()
@@ -58,7 +59,6 @@ class WeatherClient:
         except Exception as e:
             logger.error(e)
             
-    
 
 if __name__ == "__main__":
     w = WeatherClient("Уфа")

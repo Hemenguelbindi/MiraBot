@@ -1,6 +1,0 @@
-aiogram
-aiohttp
-aioredis
-python-dotenv
-loguru
-httpx

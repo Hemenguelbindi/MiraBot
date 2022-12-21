@@ -1,6 +1,6 @@
 from aiogram import types, Dispatcher
 
-from lexicon import get_random_hello, ANSWER_ADMIN
+from lexicon import choise_random_gif, ANSWER_ADMIN
 
 
 def register_admin_handler(dp: Dispatcher):
@@ -13,9 +13,9 @@ async def send_command_start_admin(message: types.Message):
         case 222997056:
             await message.bot.send_animation(
                 chat_id=message.chat.id,
-                animation=get_random_hello(),                     
+                animation=choise_random_gif("hello"),                     
                 caption=ANSWER_ADMIN["Victor"])
         case 1057974570:
             await message.bot.send_animation(chat_id=message.chat.id,
-                animation=get_random_hello(),
+                animation=choise_random_gif("hello"),
                 caption=ANSWER_ADMIN["Kristina"])

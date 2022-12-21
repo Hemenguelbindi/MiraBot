@@ -15,7 +15,10 @@ async def send_command_start_admin(message: types.Message):
                 chat_id=message.chat.id,
                 animation=choise_random_gif("hello"),                     
                 caption=ANSWER_ADMIN["Victor"])
+            await message.delete()
+
         case 1057974570:
             await message.bot.send_animation(chat_id=message.chat.id,
                 animation=choise_random_gif("hello"),
                 caption=ANSWER_ADMIN["Kristina"])
+            await message.delete()

@@ -2,6 +2,7 @@ import asyncio
 from loguru import logger
 
 from aiogram import Bot, Dispatcher
+from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from keyboards.set_menu import set_main_menu
 from handlers import register_admin_handler, register_privat_user_handlers, register_user_handlers
 from config_data import Config, load_config
@@ -22,11 +23,13 @@ def register_all_handlers(dp: Dispatcher) -> None:
 async def main():
         
     logger.info("Start bot")
+    logger.info("Get configuration")
     config: Config = load_config()
-
+    logger.info("Init memory")
+    storage: MemoryStorage = MemoryStorage()
     # Инициализируем бот и диспетчер
     mira_bot: Bot = Bot(token=config.tg_bot.token, parse_mode='HTML')
-    dp: Dispatcher = Dispatcher(mira_bot)
+    dp: Dispatcher = Dispatcher(mira_bot, storage=storage)
     # Настраиваем главное меню бота
     await set_main_menu(dp)
 
@@ -35,6 +38,7 @@ async def main():
 
     # Запускаем polling
     try:
+        logger.info("Start polling")
         await dp.start_polling()
     finally:
         await mira_bot.close()

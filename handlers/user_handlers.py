@@ -58,35 +58,35 @@ async def send_weather(message: types.Message, state: FSMContext):
             case "Rain":
                 await message.bot.send_animation(
                 chat_id=message.chat.id,
-                animation=choise_random_gif("clouds"),
+                animation=choise_random_gif("rain"),
                 caption=weather.message_format_tg()
                 )
                 await state.reset_state()            
             case "Thunderstorm":
                 await message.bot.send_animation(
                 chat_id=message.chat.id,
-                animation=choise_random_gif("clouds"),
+                animation=choise_random_gif("thunderstorm"),
                 caption=weather.message_format_tg(),
                 )
                 await state.reset_state()            
             case "Snow":
                 await message.bot.send_animation(
                 chat_id=message.chat.id,
-                animation=choise_random_gif("clouds"),
+                animation=choise_random_gif("snow"),
                 caption=weather.message_format_tg(),
                 )
                 await state.reset_state()              
             case "Clear":
                 await message.bot.send_animation(
                 chat_id=message.chat.id,
-                animation=choise_random_gif("clouds"),
+                animation=choise_random_gif("thunderstorm"),
                 caption=weather.message_format_tg(),
                 )
                 await state.reset_state()
             case _ :
                 await message.bot.send_animation(
                 chat_id=message.chat.id,
-                animation=choise_random_gif("clouds"),
+                animation=choise_random_gif("other"),
                 caption=weather.message_format_tg(),
                 )
                 await state.reset_state()               

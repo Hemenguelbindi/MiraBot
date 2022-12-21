@@ -1,7 +1,7 @@
 import datetime
 import httpx
 from loguru import logger
-from config_data import load_config_api, ConfigAPI
+from config_api import load_config_api, ConfigAPI
 
 
 

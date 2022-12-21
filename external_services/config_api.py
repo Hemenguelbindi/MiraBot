@@ -18,4 +18,4 @@ class ConfigAPI:
 def load_config_api(path: str | None = None) -> ConfigAPI:
     env = Env()
     env.read_env(path)
-    return ConfigAPI(api_weather=env('API_WEATHER'), base_url_weather=env('BASE_URL_WEATHER'))
+    return ConfigAPI(weath_token=env('API_WEATHER'), base_url_weather=env.str('BASE_URL_WEATHER'))

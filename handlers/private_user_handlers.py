@@ -4,7 +4,7 @@ from aiogram.dispatcher.storage import FSMContext
 from states.states import DateWeather
 from external_services.weather import WeatherClient
 from lexicon import random_hello_user,  help_text, choise_random_gif
-
+from utils.json_worker import add_user_json
 
 def register_privat_user_handlers(dp: Dispatcher)->None:
    dp.register_message_handler(send_command_start_user, commands=['start', 'старт', "Старт"])
@@ -15,11 +15,8 @@ def register_privat_user_handlers(dp: Dispatcher)->None:
 
 # Commad Start from user
 async def send_command_start_user(message: types.Message):
-   await message.bot.send_animation(
-                chat_id=message.chat.id,
-                animation=choise_random_gif("hello"),                     
-                caption=random_hello_user)
-   await message.delete()
+    add_user_json(id_user=message.from_user.id, user_name=message.from_user.username)    
+    await message.answer(text=f"Вы зарегестрированы ваш {message.from_user.id}, ваше имя {message.from_user.username}")
    
 
 async def send_command_help_user(message: types.Message):

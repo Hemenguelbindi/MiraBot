@@ -1,3 +1,4 @@
+import json
 from aiogram.dispatcher.storage import FSMContext
 from aiogram import types, Dispatcher
 from states.states import DateWeather
@@ -5,6 +6,7 @@ from states.states import DateWeather
 from loguru import logger
 from lexicon import random_hello_user,  help_text, choise_random_gif
 from external_services.weather import WeatherClient
+
 
 
 
@@ -17,11 +19,10 @@ def register_user_handlers(dp: Dispatcher) -> None:
 
 # Commad Start from user
 async def send_command_start_user(message: types.Message):
-   await message.bot.send_animation(
+    await message.bot.send_animation(
                 chat_id=message.chat.id,
                 animation=choise_random_gif("hello"),                     
                 caption=random_hello_user)
-   await message.delete()
    
 # Commad Help from user
 async def send_command_help_user(message: types.Message):

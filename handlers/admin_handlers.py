@@ -17,7 +17,8 @@ async def send_command_start_admin(message: types.Message):
                 caption=ANSWER_ADMIN["Victor"])
             await message.delete()
         # если по другому тогда отправить другому админу
-        await message.bot.send_animation(chat_id=message.chat.id,
+        if admin == get_admins()[1]:
+            await message.bot.send_animation(chat_id=message.chat.id,
                                          animation=choise_random_gif("hello"),
                                          caption=ANSWER_ADMIN["Kristina"])
-        await message.delete()
+            await message.delete()

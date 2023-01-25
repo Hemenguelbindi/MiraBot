@@ -1,6 +1,7 @@
 import asyncio
 from loguru import logger
 
+from apscheduler.sc
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from keyboards.set_menu import set_main_menu

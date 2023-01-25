@@ -23,5 +23,14 @@ def load_config(path: str | None = None) -> Config:
                                admin_ids=list(map(int, env.list('ADMIN_IDS')))))
 
 
+# ADMINS
+def get_admins(path: str | None = None) -> list[int]:
+    env = Env()
+    env.read_env(path)
+    return list(map(int, env.list("ADMIN_IDS")))
+
+
 if __name__ == "__main__":
     print(load_config())
+    print(get_admins())
+    print()

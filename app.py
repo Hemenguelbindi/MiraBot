@@ -1,6 +1,9 @@
 import asyncio
+from datetime import datetime
+
 from loguru import logger
 
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from keyboards.set_menu import set_main_menu
@@ -30,6 +33,14 @@ async def main():
     # Инициализируем бот и диспетчер
     mira_bot: Bot = Bot(token=config.tg_bot.token, parse_mode='HTML')
     dp: Dispatcher = Dispatcher(mira_bot, storage=storage)
+    scheduler = AsyncIOScheduler(timezone="Asia/Yekaterinburg")
+    scheduler.add_job(send_weather, trigger='cron', hour='9', minute='50',
+                      start_date=datetime.now(),
+                      kwargs={'bot': mira_bot})
+    scheduler.add_job(send_active_care, trigger='cron', hour="9", minute='50',
+                      start_date=datetime.now(),
+                      kwargs={'bot': mira_bot})
+    scheduler.start()
     # Настраиваем главное меню бота
     await set_main_menu(dp)
 

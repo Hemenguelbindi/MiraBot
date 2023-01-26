@@ -34,11 +34,11 @@ async def main():
     mira_bot: Bot = Bot(token=setting.tg_bot.token, parse_mode='HTML')
     dp: Dispatcher = Dispatcher(mira_bot, storage=storage)
     scheduler = AsyncIOScheduler(timezone="Asia/Yekaterinburg")
-    scheduler.add_job(send_weather, trigger='cron', hour='9',
+    scheduler.add_job(send_weather, trigger='cron', hour='9', minute='50',
                       start_date=datetime.now(),
                       kwargs={'bot': mira_bot})
-    scheduler.add_job(send_active_care, trigger='cron', hour="8",
-                      minute=datetime.now().minute + 1, start_date=datetime.now(),
+    scheduler.add_job(send_active_care, trigger='cron', hour="9", minute='50',
+                      start_date=datetime.now(),
                       kwargs={'bot': mira_bot})
     scheduler.start()
     # Настраиваем главное меню бота

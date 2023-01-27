@@ -14,9 +14,6 @@ from config_data import Config, load_config
 
 logger.add("logs/{time}.log", format="{time} {level} {message}", rotation="1 week", compression="zip")
 
-config: Config = load_config()
-
-
 # Фнукция для регистрации всех хэндлеров
 def register_all_handlers(dp: Dispatcher) -> None:
     register_admin_handler(dp)
@@ -29,6 +26,7 @@ async def main():
     logger.info("Start bot")
     logger.info("Get configuration")
     config: Config = load_config()
+
     logger.info("Init memory")
     storage: MemoryStorage = MemoryStorage()
     # Инициализируем бот и диспетчер

@@ -7,5 +7,5 @@ COPY requirements.txt /mirabot/requirements.txt
 RUN pip install -r requirements.txt
 COPY . /mirabot/
 
-CMD python3 /mirabot/app.py
+
 

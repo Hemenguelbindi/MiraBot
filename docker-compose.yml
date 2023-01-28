@@ -3,3 +3,19 @@ services:
   bot:
     build: .
     command: python app.py
+  postgres:
+    container_name: mira_posgrest
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: super_admin
+      POSTGRES_PASSWORD: SomeSecretPassword
+      PGDATA: /data/postgres
+    volumes:
+      - postgres-db:/data/postgres
+    ports:
+      - "5432:5432"
+
+
+volumes:
+  postgres-db:
+      driver: local

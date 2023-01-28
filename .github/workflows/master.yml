@@ -17,4 +17,4 @@ jobs:
             BASE_URL_WEATHER: ${{ secrets.BASE_URL_WEATHER }}
             API_WEATHER: ${{ secrets.API_WEATHER }}
             ADMIN_IDS: ${{ secrets.ADMIN_IDS }}
-        - run: docker build . --file Dockerfile --tag mirabot:$(date +%s)
+        - run: docker-compose up

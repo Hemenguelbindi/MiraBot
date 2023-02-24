@@ -1,5 +1,5 @@
 import random
-from datetime import datetime
+
 
 warm_up_tranging = [
     "https://youtu.be/2ax28C-hWPY",
@@ -48,67 +48,46 @@ stretching_traning = [
     "https://www.youtube.com/watch?v=4JZCt9Ex-ow",
 ]
 
+MONDAY = (f"<b>Приветсвую сегодня понедельник и выбор упражнений у нас вот такой:</b>\n"
+            f"Разминка: {random.choice(warm_up_tranging)}\n"
+            f"Упражнения для рук: {random.choice(hands_traning)}\n"
+            f"Заминка: {random.choice(hands_traning)}\n"
+            "И не забудь отчитаться о выполнение спасибо! Удачи, с каждым днем ты становишься все лучше!")
 
-def genarate_traning() -> str:
-    weekday = datetime.now().date()
-    match weekday.strftime('%w'):
-        case 1:
-            return (f"<b>Приветсвую сегодня понедельник и выбор упражнений у нас вот такой:\n</b>"
-                    f"Разминка: {random.choice(warm_up_tranging)}\n"
-                    f"Упражнения для рук: {random.choice(hands_traning)}\n"
-                    f"Заминка: {random.choice(hands_traning)}\n"
-                    "И не забудь отчитаться о выполнение спасибо! Удачи, с каждым днем ты становишься все лучше!"
-                    )
-        case 2:
-            return (
-                f"<b>Приветсвую сегодня понедельник и выбор упражнений у нас вот такой:\n</b>"
-                f"Разминка: {random.choice(warm_up_tranging)}\n"
-                f"Упражнения на пресс: {random.choice(press_traning)}\n"
-                f"Заминка: {random.choice(hands_traning)}\n"
-                "И не забудь отчитаться о выполнение спасибо! Удачи, с каждым днем ты становишься все лучше!"
-                )
-        case 3:
-            return (
-                f"<b>Приветсвую сегодня понедельник и выбор упражнений у нас вот такой:\n</b>"
-                f"Разминка: {random.choice(warm_up_tranging)}\n"
-                f"Упражнения на все тело: {random.choice(all_body_traning)}\n"
-                f"Заминка: {random.choice(hands_traning)}\n"
-                "И не забудь отчитаться о выполнение спасибо! Удачи, с каждым днем ты становишься все лучше!"
-            )
-        case 4:
-            return (
-                f"<b>Приветсвую сегодня понедельник и выбор упражнений у нас вот такой:\n</b>"
-                f"Разминка: {random.choice(warm_up_tranging)}\n"
-                f"Кардио в студию: {random.choice(cardios_traning)}\n"
-                f"Заминка: {random.choice(hands_traning)}\n"
-                "И не забудь отчитаться о выполнение спасибо! Удачи, с каждым днем ты становишься все лучше!"
-            )
+TUESDAY = (f"<b>Приветсвую сегодня вторник и выбор упражнений у нас вот такой:</b>\n"
+           f"Разминка: {random.choice(warm_up_tranging)}\n"
+           f"Упражнения на пресс: {random.choice(press_traning)}\n"
+           f"Заминка: {random.choice(hands_traning)}\n"
+           "И не забудь отчитаться о выполнение спасибо! Удачи, с каждым днем ты становишься все лучше!")
 
-        case 5:
-            return (
-                f"<b>Приветсвую сегодня понедельник и выбор упражнений у нас вот такой:\n</b>"
-                f"Разминка: {random.choice(warm_up_tranging)}\n"
-                f"Растяжка на все тело: {random.choice(stretching_traning)}\n"
-                f"Заминка: {random.choice(hands_traning)}\n"
-                "И не забудь отчитаться о выполнение спасибо! Удачи, с каждым днем ты становишься все лучше!"
-            )
-        case 6:
-            return (
-                f"<b>Приветсвую сегодня понедельник и выбор упражнений у нас вот такой:\n</b>"
-                f"Разминка: {random.choice(warm_up_tranging)}\n"
-                f"Кардио в студию: {random.choice(cardios_traning)}\n"
-                f"Заминка: {random.choice(hands_traning)}\n"
-                "И не забудь отчитаться о выполнение спасибо! Удачи, с каждым днем ты становишься все лучше!"
-            )
-        case 7:
-            return (
-                f"<b>Приветсвую сегодня понедельник и выбор упражнений у нас вот такой:\n</b>"
-                f"Разминка: {random.choice(warm_up_tranging)}\n"
-                f"Упражнения на все тело: {random.choice(all_body_traning)}\n"
-                f"Заминка: {random.choice(hands_traning)}\n"
-                "И не забудь отчитаться о выполнение спасибо! Удачи, с каждым днем ты становишься все лучше!"
-            )
+WEDNESDAY = (f"<b>Приветсвую сегодня среда и выбор упражнений у нас вот такой:</b>\n"
+             f"Разминка: {random.choice(warm_up_tranging)}\n"
+             f"Упражнения на все тело: {random.choice(all_body_traning)}\n"
+             f"Заминка: {random.choice(hands_traning)}\n"
+             "И не забудь отчитаться о выполнение спасибо! Удачи, с каждым днем ты становишься все лучше!")
+
+THURSDAY = (f"<b>Приветсвую сегодня четверг и выбор упражнений у нас вот такой:</b>\n"
+            f"Разминка: {random.choice(warm_up_tranging)}\n"
+            f"Кардио в студию: {random.choice(cardios_traning)}\n"
+            f"Заминка: {random.choice(hands_traning)}\n"
+            "И не забудь отчитаться о выполнение спасибо! Удачи, с каждым днем ты становишься все лучше!")
+
+FRIDAY = (f"<b>Приветсвую сегодня пятница и выбор упражнений у нас вот такой:</b>\n"
+          f"Разминка: {random.choice(warm_up_tranging)}\n"
+          f"Растяжка на все тело: {random.choice(stretching_traning)}\n"
+          f"Заминка: {random.choice(hands_traning)}\n"
+          "И не забудь отчитаться о выполнение спасибо! Удачи, с каждым днем ты становишься все лучше!")
+
+SATURDAY = (f"<b>Приветсвую сегодня суббота и выбор упражнений у нас вот такой:\n</b>"
+            f"Разминка: {random.choice(warm_up_tranging)}\n"
+            f"Кардио в студию: {random.choice(cardios_traning)}\n"
+            f"Заминка: {random.choice(hands_traning)}\n"
+            "И не забудь отчитаться о выполнение спасибо! Удачи, с каждым днем ты становишься все лучше!")
+
+SUNDAY = (f"<b>Приветсвую сегодня воскресенье и выбор упражнений у нас вот такой:\n</b>"
+          f"Разминка: {random.choice(warm_up_tranging)}\n"
+          f"Упражнения на все тело: {random.choice(all_body_traning)}\n"
+          f"Заминка: {random.choice(hands_traning)}\n"
+          "И не забудь отчитаться о выполнение спасибо! Удачи, с каждым днем ты становишься все лучше!")
 
 
-if __name__ == "__main__":
-    print(genarate_traning())

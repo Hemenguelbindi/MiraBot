@@ -80,13 +80,23 @@ other: list[str] = [
     "https://media.tenor.com/HCaG2zPIo_UAAAAC/nezuko-kamado-demon-slayer.gif",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUVA1yK4bdIO4YDyn9uIoicAmHtrQ6d3O0Zg&usqp=CAU",
 ]
-    
+sport: list[str] = [
+    "https://i.pinimg.com/originals/8f/94/35/8f943534fffd82233ad3f51167f02a3b.gif",
+    "https://animesher.com/orig/1/188/1884/18841/animesher.com_sport-jump-girls-1884150.gif",
+    "https://i.pinimg.com/originals/60/7a/35/607a354344d527ff5868ad46ace65888.gif",
+    "https://media.tenor.com/A1b1qbwOwWIAAAAC/baseball-anime.gif",
+    "https://media.tenor.com/QISAQBv9xx8AAAAC/nichijou-funny.gif",
+]
+
+
 def choise_random_gif(gif_list_name: str) -> str:
         try:
             logger.info("Random choise image")
             match gif_list_name:
                 case "hello":
                     return random.choice(hello)
+                case "sport":
+                    return random.choice(sport)
                 case "help":
                     return random.choice(help)
                 case "clouds":
@@ -101,6 +111,7 @@ def choise_random_gif(gif_list_name: str) -> str:
                     return random.choice(clear)
                 case "other":
                     return random.choice(other)
+
                 
         except Exception as e:
             logger.error(e)

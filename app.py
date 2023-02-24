@@ -8,7 +8,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from keyboards.set_menu import set_main_menu
 from handlers import register_admin_handler, register_privat_user_handlers, register_user_handlers
-from handlers_tasks import send_weather, send_active_care
+from handlers_tasks import send_weather, random_traning
 from config_data import Config, load_config
 
 
@@ -36,10 +36,10 @@ async def main():
     dp: Dispatcher = Dispatcher(mira_bot, storage=storage)
     logger.info("Init tasks...")
     scheduler = AsyncIOScheduler(timezone="Asia/Yekaterinburg")
-    scheduler.add_job(send_weather, trigger='cron', hour='10', minute='10',
+    scheduler.add_job(send_weather, trigger='cron', hour='9',
                       start_date=datetime.now(),
                       kwargs={'bot': mira_bot})
-    scheduler.add_job(send_active_care, trigger='cron', hour="10", minute='10',
+    scheduler.add_job(random_traning, trigger='cron', hour='7',
                       start_date=datetime.now(),
                       kwargs={'bot': mira_bot})
     scheduler.start()

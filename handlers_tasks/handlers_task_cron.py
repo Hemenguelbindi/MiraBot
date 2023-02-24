@@ -1,12 +1,11 @@
-from datetime import datetime
-
 from aiogram import Bot
 
 from loguru import logger
 
-from lexicon import choise_random_gif, active_and_care
+from lexicon import choise_random_gif
 from config_data.config import get_admins
 from external_services.weather import WeatherClient
+from external_services.random_generate_traning import generate_training
 
 
 async def send_weather(bot: Bot):
@@ -56,9 +55,11 @@ async def send_weather(bot: Bot):
             logger.error(e)
 
 
-async def send_active_care(bot: Bot):
-    admin_krist = get_admins()[1]
-    to_day = datetime.today().strftime("%d.%m.%Y")
-    get_active = active_and_care.get(to_day)
-    if get_active is not None:
-        await bot.send_message(admin_krist, text=get_active)
+async def random_traning(bot: Bot):
+    admin = get_admins()
+    await bot.send_animation(
+            chat_id=admin[1],
+            animation=choise_random_gif("sport"),
+            caption=generate_training(),
+        )
+

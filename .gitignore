@@ -143,3 +143,4 @@ dmypy.json
 log
 logs
 /.idea/
+/poetry.lock

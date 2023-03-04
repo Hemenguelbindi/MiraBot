@@ -4,9 +4,7 @@ from loguru import logger
 from .config_api import load_config_api, ConfigAPI
 
 
-
 config_weather: ConfigAPI = load_config_api()
-
 
 class WeatherClient:
     def __init__(self, city: str, base_url:str = config_weather.base_url_weather, token:str = config_weather.weath_token)->None:

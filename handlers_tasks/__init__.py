@@ -1,1 +1,1 @@
-from .handlers_task_cron import send_weather, random_traning
+from .handlers_task_cron import send_weather, random_workout

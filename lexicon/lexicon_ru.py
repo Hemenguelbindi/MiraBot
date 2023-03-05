@@ -189,7 +189,7 @@ class LinkVideoSelector:
 
 class MessageSelector:
     """Хранилище шаблонов текста """
-
+    # workout
     def __init__(self):
         self.__link = LinkVideoSelector()
         self.__message = {
@@ -207,6 +207,9 @@ class MessageSelector:
                 "Добро пожаловать! Я счастлив, что вы посетили нас впервые.",
                 "Привет я бот Мира, если хочешь узнать что я могу и умею, напиши /help"
             ],
+
+        }
+        self.__message_workout = {
             "0": (f"<b>Приветсвую сегодня понедельник и выбор упражнений у нас вот такой:</b>\n"
                   f" Разминка: {random.choice(self.__link.video_choice('warm_up_tranging'))}\n"
                   f"Упражнения для рук: {random.choice(self.__link.video_choice('hands_traning'))}\n"
@@ -250,10 +253,10 @@ class MessageSelector:
                   "И не забудь отчитаться о выполнение спасибо! Удачи, с каждым днем ты становишься все лучше!"),
         }
 
-    def message_sport(self):
+    def message_workout(self):
         now = datetime.now()
         week_day = datetime.weekday(now)
-        return self.__message.get(str(week_day))
+        return self.__message_workout.get(str(week_day))
 
     def message_admin(self, admin_name):
         return self.__message.get("from_admin")[admin_name]

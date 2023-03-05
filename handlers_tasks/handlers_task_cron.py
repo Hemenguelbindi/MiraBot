@@ -15,7 +15,7 @@ async def send_weather(bot: Bot):
             weather_description = weather_data["weather"][0]["main"]
 
             if weather_data:
-                animation_weather = ImagesSelector.random_img(weather_description, "other")
+                animation_weather = ImagesSelector().random_img(weather_description)
                 await bot.send_animation(
                     chat_id=admin,
                     animation=animation_weather,
@@ -25,10 +25,10 @@ async def send_weather(bot: Bot):
             logger.error(e)
 
 
-async def random_traning(bot: Bot):
+async def random_workout(bot: Bot):
     admin = get_admins()
     img = ImagesSelector().random_img("sport")
-    msg = MessageSelector().message_sport()
+    msg = MessageSelector().message_workout()
     await bot.send_animation(
         chat_id=admin[1],
         animation=img,
@@ -38,7 +38,7 @@ async def random_traning(bot: Bot):
 
 async def time_learn(bot: Bot):
     admin = get_admins()
-    img = ImagesSelector.random_img("just_learn")
+    img = ImagesSelector().random_img("just_learn")
     link = LinkLessonSelector()
     if link is not None:
         await bot.send_animation(
